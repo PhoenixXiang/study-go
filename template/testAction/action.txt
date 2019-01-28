@@ -1,0 +1,15 @@
+--------------------
+{{- /* a comment with white space trimmed from preceding and following text */ -}}
+----------
+pipeline : {{.}}
+----------
+if: {{if .P}} {{.P}} {{end}}
+----------
+if else: {{if .P}} P exist {{else}} no Person {{end}}
+----------
+range: {{range .P}} {{if .Isshow}} name:{{.Name}} {{else}} hide {{end}} {{end}}
+----------
+range else: {{range .P}} {{.}} {{else}} no Person {{end}}
+----------
+with else: {{with .P}} {{.}} {{else}} no Person {{end}}
+----------
