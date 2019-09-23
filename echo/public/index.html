@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Single file upload</title>
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+
+<body>
+    <h1>Upload single file with fields</h1>
+
+    <form enctype="multipart/form-data">
+        <p>上传文件<input type="file" id="photo" name="photo" /></p>
+
+    </form>
+    <button id="import">导入</button>
+    <script type="application/javascript">
+        $("#import").click(function () {
+            // var files = $('#photo').prop('files');
+            var data = new FormData();
+            data.append('file', $('#photo')[0].files[0]);
+
+            $.ajax({
+                type: 'POST',
+                url: "http://192.168.21.20:4560/game/photo/upload/scenery",
+                data: data,
+                cache: false,
+                processData: false,
+                headers: {
+                    Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njk5NzIzMzMsImlhdCI6MTU2NjM3MjMzMywibmJmIjoxNTY2MzcyMzMzLCJyb2xlSWQiOjEwMDAxfQ.gpOQ1tTgGayHnsRCIhveUChATMcbEH-5u3aZbHokJN8"
+                },
+                contentType: false,
+                success: function (ret) {
+                    console.log(ret);
+                },
+                error: function (a, b, c) {
+                    console.log("请求失败：" + a, b, c);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
